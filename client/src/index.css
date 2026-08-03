@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-cream font-sans text-meadow-dark antialiased;
+  }
+
+  ::selection {
+    @apply bg-meadow/20 text-meadow-dark;
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-site px-5 sm:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-sm bg-meadow px-6 py-3 text-sm font-medium tracking-wide text-cream transition hover:bg-meadow-light;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center rounded-sm border border-meadow/30 px-6 py-3 text-sm font-medium tracking-wide text-meadow transition hover:border-meadow hover:bg-meadow/5;
+  }
+
+  .btn-terracotta {
+    @apply inline-flex items-center justify-center rounded-sm bg-terracotta px-6 py-3 text-sm font-medium tracking-wide text-cream transition hover:bg-terracotta-dark;
+  }
+
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.2em] text-stone;
+  }
+
+  .heading-display {
+    @apply font-serif text-4xl font-medium leading-tight tracking-tight sm:text-5xl lg:text-6xl;
+  }
+
+  .heading-section {
+    @apply font-serif text-3xl font-medium leading-tight tracking-tight sm:text-4xl;
+  }
+
+  .prose-meadow h2 {
+    @apply mt-8 mb-4 font-serif text-2xl font-medium text-meadow;
+  }
+
+  .prose-meadow h3 {
+    @apply mt-6 mb-3 font-serif text-xl font-medium text-meadow;
+  }
+
+  .prose-meadow p {
+    @apply mb-4 leading-relaxed text-stone-dark;
+  }
+
+  .prose-meadow ul {
+    @apply mb-4 list-disc space-y-2 pl-5 text-stone-dark;
+  }
+
+  .prose-meadow a {
+    @apply text-terracotta underline-offset-2 hover:underline;
+  }
+
+  .input {
+    @apply w-full rounded-sm border border-meadow/20 bg-white px-3 py-2.5 text-sm text-meadow-dark outline-none transition focus:border-meadow focus:ring-1 focus:ring-meadow/30;
+  }
+}
