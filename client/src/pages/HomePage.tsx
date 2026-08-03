@@ -18,7 +18,7 @@ export default function HomePage() {
       <section className="relative min-h-[85vh] flex items-end overflow-hidden">
         <img
           src={PROPERTY.heroImage}
-          alt=""
+          alt="Tigley Meadow Coach House — stone exterior with solar panels, glass doors and patio"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-meadow-dark/90 via-meadow-dark/40 to-meadow-dark/20" />

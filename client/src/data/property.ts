@@ -1,3 +1,5 @@
+import heroImage from "../assets/hero.png";
+
 export const PROPERTY = {
   name: "Tigley Meadow Coach House",
   tagline: "Peace, beauty and rural Devon living",
@@ -16,9 +18,12 @@ export const PROPERTY = {
     { name: "Katy", phone: "07970096672" },
   ],
 
-  heroImage:
-    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80",
+  heroImage,
   gallery: [
+    {
+      src: heroImage,
+      alt: "Tigley Meadow Coach House exterior — stone walls, solar panels and patio",
+    },
     {
       src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
       alt: "Light-filled living space",
