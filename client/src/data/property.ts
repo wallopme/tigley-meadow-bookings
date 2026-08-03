@@ -19,6 +19,15 @@ export const PROPERTY = {
   ],
 
   heroImage,
+  /** Adjust homepage hero photo — see README or comments below */
+  hero: {
+    /** Where to focus the crop: "center", "top", "bottom", or "50% 30%" etc. */
+    objectPosition: "center",
+    /** 1 = normal, 1.15 = brighter, 0.85 = darker */
+    brightness: 1.2,
+    /** Dark overlay on the image so text stays readable (0 = none, 1 = very dark) */
+    overlayOpacity: 0.3,
+  },
   gallery: [
     {
       src: heroImage,

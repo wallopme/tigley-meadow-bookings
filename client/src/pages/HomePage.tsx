@@ -20,8 +20,17 @@ export default function HomePage() {
           src={PROPERTY.heroImage}
           alt="Tigley Meadow Coach House — stone exterior with solar panels, glass doors and patio"
           className="absolute inset-0 h-full w-full object-cover"
+          style={{
+            objectPosition: PROPERTY.hero.objectPosition,
+            filter: `brightness(${PROPERTY.hero.brightness})`,
+          }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-meadow-dark/90 via-meadow-dark/40 to-meadow-dark/20" />
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-meadow-dark via-meadow-dark/40 to-meadow-dark/20"
+          style={{
+            opacity: PROPERTY.hero.overlayOpacity,
+          }}
+        />
         <div className="relative container-site pb-16 pt-32 sm:pb-20">
           <p className="eyebrow text-cream/70">{PROPERTY.distances}</p>
           <h1 className="heading-display mt-4 max-w-2xl text-cream">
