@@ -83,6 +83,30 @@ npm start
 
 The server serves the built frontend from `client/dist` and the API from `/api`.
 
+## Auto-deploy (Railway — recommended)
+
+Every push to `main` can deploy automatically. One-time setup (~5 minutes):
+
+1. Go to [railway.app](https://railway.app) and sign in with GitHub
+2. **New Project → Deploy from GitHub repo → `wallopme/tigley-meadow-bookings`**
+3. Railway detects the `Dockerfile` and deploys on every push to `main`
+4. Open the service **Variables** tab and add:
+   - `ADMIN_PASSWORD` — a secure password for `/admin`
+   - `JWT_SECRET` — a long random string
+5. Open **Settings → Volumes → Add volume**
+   - Mount path: `/app/server/data` (keeps bookings between deploys)
+6. **Settings → Networking → Generate domain** — your live URL
+7. Optional: add `CLIENT_ORIGIN` = your Railway URL (usually auto-detected)
+
+GitHub Actions also runs a **build check** on every push to `main`.
+
+### Alternative: Render
+
+1. Go to [render.com](https://render.com) and connect the GitHub repo
+2. Render picks up `render.yaml` automatically
+3. Set `ADMIN_PASSWORD` in the dashboard
+4. Requires **Starter plan** ($7/mo) for persistent booking storage (disk)
+
 ## Project structure
 
 ```
@@ -95,7 +119,7 @@ tigley-meadow/
 │       └── pages/          # Home, Property, Location, Book, Blog, Admin
 ├── server/                 # Express API
 │   ├── src/
-│   │   ├── db.ts           # SQLite schema & helpers
+│   │   ├── db.ts           # JSON store & helpers
 │   │   ├── routes.ts       # Public & admin endpoints
 │   │   └── index.ts
 │   └── data/               # Booking data (store.json, created on first run)
@@ -104,9 +128,9 @@ tigley-meadow/
 
 ## Next steps
 
-- [ ] Add your own property photos
-- [ ] Update the description in `property.ts` with your new copy
+- [x] Add your own property photos (hero image added)
+- [x] Update the description in `property.ts`
+- [ ] Complete Railway one-time setup (see Auto-deploy above)
 - [ ] Set a secure admin password in production
 - [ ] Add your Instagram URL in admin settings when the account is live
-- [ ] Deploy (Railway, Fly.io, or a VPS work well for Node + SQLite)
 - [ ] Optional: connect a custom domain and add email notifications for new bookings

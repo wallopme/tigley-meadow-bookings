@@ -1,0 +1,23 @@
+# Alternative to Railway — deploy at https://render.com
+# Connect the GitHub repo and Render will pick up this blueprint.
+
+services:
+  - type: web
+    name: tigley-meadow
+    runtime: docker
+    region: frankfurt
+    plan: starter
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CLIENT_ORIGIN
+        sync: false
+    disk:
+      name: tigley-data
+      mountPath: /app/server/data
+      sizeGB: 1

@@ -3,7 +3,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const dataDir = path.join(__dirname, "..", "data");
+const dataDir =
+  process.env.DATA_DIR ?? path.join(__dirname, "..", "data");
 const dbPath = path.join(dataDir, "store.json");
 
 export type Booking = {
