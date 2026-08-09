@@ -18,7 +18,6 @@ FROM node:22-alpine AS runner
 WORKDIR /app/server
 
 ENV NODE_ENV=production
-ENV PORT=3001
 
 COPY server/package.json server/package-lock.json ./
 RUN npm ci --omit=dev
@@ -28,9 +27,6 @@ COPY --from=builder /app/client/dist ../client/dist
 
 RUN mkdir -p data
 
-EXPOSE 3001
-
-HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-  CMD wget -qO- http://127.0.0.1:${PORT}/api/health > /dev/null || exit 1
+EXPOSE 8080
 
 CMD ["node", "dist/index.js"]

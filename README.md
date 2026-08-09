@@ -85,6 +85,8 @@ The server serves the built frontend from `client/dist` and the API from `/api`.
 
 ## Auto-deploy (Railway — recommended)
 
+GitHub Actions runs a **build check only** — a green tick there does not mean Railway deployed. Railway deploys separately when your repo is connected in the Railway dashboard.
+
 Every push to `main` can deploy automatically. One-time setup (~5 minutes):
 
 1. Go to [railway.app](https://railway.app) and sign in with GitHub
@@ -97,6 +99,25 @@ Every push to `main` can deploy automatically. One-time setup (~5 minutes):
    - Mount path: `/app/server/data` (keeps bookings between deploys)
 6. **Settings → Networking → Generate domain** — your live URL
 7. Optional: add `CLIENT_ORIGIN` = your Railway URL (usually auto-detected)
+
+### Troubleshooting: site not updating?
+
+1. **Check Railway, not GitHub** — open your service → **Deployments**. The latest must show **Success** (not Failed or Crashed).
+2. **Check you're on the right URL** — use the domain from Railway **Settings → Networking** (not localhost).
+3. **Hard refresh** — Cmd+Shift+R (Mac) or Ctrl+Shift+R (Windows).
+4. **Verify the live version** — visit `https://YOUR-RAILWAY-URL/api/health`  
+   The `commit` field should match your latest GitHub commit (e.g. `e59b66d`).
+5. **Check billing** — if credits ran out, Railway stops your app (see below).
+
+### Do you need to pay?
+
+| Plan | Cost | Notes |
+|------|------|-------|
+| **Trial** | Free $5 credit | Lasts ~30 days, then stops |
+| **Free** | $0 | Only $1/month usage — usually **not enough** for a site running 24/7 |
+| **Hobby** | **$5/month** | Recommended for a live holiday site; includes $5 usage credit |
+
+For a small Node app running continuously, expect to need the **Hobby plan ($5/month)** after the trial. If your trial credits expired, deployments may appear in the dashboard but the service won't stay running.
 
 GitHub Actions also runs a **build check** on every push to `main`.
 

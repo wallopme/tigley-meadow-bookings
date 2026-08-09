@@ -39,7 +39,14 @@ app.use(
 app.use(express.json());
 
 app.get("/api/health", (_req, res) => {
-  res.json({ ok: true });
+  res.json({
+    ok: true,
+    commit:
+      process.env.RAILWAY_GIT_COMMIT_SHA ??
+      process.env.GITHUB_SHA ??
+      "local",
+    deployedAt: process.env.RAILWAY_DEPLOYMENT_ID ?? null,
+  });
 });
 
 app.use("/api", publicRouter);
@@ -47,7 +54,15 @@ app.use("/api/admin", adminRouter);
 
 const clientDist = path.join(__dirname, "..", "..", "client", "dist");
 if (fs.existsSync(clientDist)) {
-  app.use(express.static(clientDist));
+  app.use(
+    express.static(clientDist, {
+      setHeaders(res, filePath) {
+        if (filePath.endsWith("index.html")) {
+          res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        }
+      },
+    })
+  );
   app.get("*", (req, res, next) => {
     if (req.path.startsWith("/api")) {
       next();

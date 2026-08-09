@@ -1,7 +1,9 @@
-name: Deploy
+name: CI
 
 on:
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
 
 jobs:
@@ -25,13 +27,5 @@ jobs:
       - name: Build
         run: npm run build
 
-  # Optional: add RENDER_DEPLOY_HOOK as a GitHub secret to auto-deploy Render
-  deploy-render:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger Render deploy
-        if: env.RENDER_DEPLOY_HOOK != ''
-        env:
-          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
-        run: curl -fsS -X POST "$RENDER_DEPLOY_HOOK"
+      - name: Build Docker image
+        run: docker build -t tigley-meadow .
