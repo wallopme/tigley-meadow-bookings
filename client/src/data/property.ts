@@ -4,6 +4,11 @@ export const PROPERTY = {
   name: "Tigley Meadow Coach House",
   tagline: "Peace, beauty and rural Devon living",
   location: "Brooking, near Dartington, Devon",
+  postcode: "TQ9 6DW",
+  map: {
+    lat: 50.429726,
+    lon: -3.750398,
+  },
   distances: "Dartington 2.5 miles · Totnes 3 miles",
   sleeps: 4,
   bedrooms: 2,

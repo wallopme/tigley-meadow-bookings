@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
 import { PROPERTY } from "../data/property";
 
+function mapEmbedUrl(lat: number, lon: number): string {
+  const pad = 0.016;
+  const bbox = [lon - pad, lat - pad * 0.75, lon + pad, lat + pad * 0.75].join(
+    ","
+  );
+  return `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(bbox)}&layer=mapnik&marker=${lat}%2C${lon}`;
+}
+
 export default function LocationPage() {
   return (
     <>
@@ -58,9 +66,11 @@ export default function LocationPage() {
           <div>
             <h2 className="heading-section text-meadow">Getting here</h2>
             <p className="mt-6 leading-relaxed text-stone-dark">
-              Full address and directions will be sent with your booking
-              confirmation. Off-road parking for two cars is available directly
-              outside the property.
+              Tigley Meadow Coach House is at postcode{" "}
+              <strong className="text-meadow">{PROPERTY.postcode}</strong> (Brooking,
+              near Dartington). Off-road parking for two cars is available directly
+              outside the property — full directions are sent with your booking
+              confirmation.
             </p>
             <p className="mt-4 leading-relaxed text-stone-dark">
               The nearest shop is 2.3 miles away and the nearest pub 1.8 miles.
@@ -68,13 +78,18 @@ export default function LocationPage() {
               regular market.
             </p>
           </div>
-          <div className="aspect-[4/3] overflow-hidden rounded-sm bg-meadow/10">
-            <iframe
-              title="Map of Dartington, Devon"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=-3.72%2C50.41%2C-3.68%2C50.44&layer=mapnik&marker=50.425%2C-3.7"
-              className="h-full w-full border-0"
-              loading="lazy"
-            />
+          <div>
+            <div className="aspect-[4/3] overflow-hidden rounded-sm bg-meadow/10">
+              <iframe
+                title={`Map of Tigley Meadow Coach House, ${PROPERTY.postcode}`}
+                src={mapEmbedUrl(PROPERTY.map.lat, PROPERTY.map.lon)}
+                className="h-full w-full border-0"
+                loading="lazy"
+              />
+            </div>
+            <p className="mt-3 text-center text-xs text-stone">
+              Postcode for sat nav: {PROPERTY.postcode}
+            </p>
           </div>
         </div>
       </section>
