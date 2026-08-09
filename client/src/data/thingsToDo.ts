@@ -5,7 +5,7 @@ export const GUEST_INFO = {
   },
   bins: "Leave outside the door Tuesday PM or Wednesday AM",
   foodPolicy:
-    "Sykes Cottages ask that no food is left behind from visits",
+    "Please don't leave any food behind when you check out — it helps us keep the Coach House fresh for the next guests.",
 };
 
 export const PLACES_TO_EAT = [
